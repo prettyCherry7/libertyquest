@@ -42,52 +42,120 @@
             color: #f00;
             text-shadow: 0 0 5px #f00;
         }
+        .typing {
+            border-right: 2px solid #0f0;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #passwordInput, #submitBtn, #errorMessage, #successMessage {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div id="passage">
-        <h2>ТЕРМИНАЛ ДОСТУПА СУПЕР-ЗЕМЛИ</h2>
-        <p>Гражданин! Приготовься стать частью легиона на защите демократии! Введи номер 
-
-жетона:</p>
+        <h2 id="header"></h2>
+        <p id="message1"></p>
         
         <input type="text" id="passwordInput" placeholder="№ ЖЕТОНА">
-        <button onclick="checkPassword()">ПОДТВЕРДИТЬ</button>
+        <button id="submitBtn" onclick="checkPassword()">ПОДТВЕРДИТЬ</button>
         
-        <p id="errorMessage" class="error" style="display:none;">ОШИБКА! Неверный код. Попробуй 
-
-снова.</p>
+        <p id="errorMessage" class="error">ОШИБКА! Неверный код. Попробуй снова.</p>
         
-        <div id="successMessage" style="display:none;">
+        <div id="successMessage">
             <hr>
-            <h3>ДОСТУП РАЗРЕШЁН</h3>
-            <p>Твой сегмент ключа для входа в систему: <strong>AYAJI</strong></p>
-            <p>Используй бортовой терминал для расшифровки кода.</p>
-            <p>Кодировка HEX. Переведи его в текст, чтобы продвинуться дальше.</p>
-            <p>65 89 65 74 73</p>
-            <p>Слава Супер-Земле!</p>
-            <h2>ПЕРЕДАЧА ПОЛУЧЕННЫХ ОТ КОМАНДОВАНИЯ ДАННЫХ В ТРЕТЬИ РУКИ КАРАЕТСЯ ПО ВСЕЙ СТРОГОСТИ 
-
-ДЕМОКРАТИИ<h2>
+            <h3 id="success1"></h3>
+            <p id="success2"></p>
+            <p id="success3"></p>
+            <p id="success4"></p>
+            <p id="success5"></p>
+            <p id="success6"></p>
+            <h2 id="success7"></h2>
         </div>
     </div>
 
     <script>
-        function checkPassword() {
-            const input = document.getElementById("passwordInput").value;
-            const error = document.getElementById("errorMessage");
-            const success = document.getElementById("successMessage");
+        // Анимация печатающегося текста
+        const typeText = (element, text, speed = 50, callback = null) => {
+            let i = 0;
+            element.innerHTML = '';
+            element.classList.add('typing');
             
-            if (input.toUpperCase() === "XGQ4V") {
-                error.style.display = "none";
-                success.style.display = "block";
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    element.classList.remove('typing');
+                    clearInterval(typing);
+                    if (callback) callback();
+                }
+            }, speed);
+        };
+
+        // Последовательность анимаций
+        const startSequence = () => {
+            typeText(document.getElementById('header'), 'ТЕРМИНАЛ ДОСТУПА СУПЕР-ЗЕМЛИ', 70, () => {
+                setTimeout(() => {
+                    typeText(document.getElementById('message1'), 'Гражданин! Приготовься стать частью легиона на защите демократии! Введи номер жетона:', 30, () => {
+                        setTimeout(() => {
+                            document.getElementById('passwordInput').style.display = 'block';
+                            document.getElementById('submitBtn').style.display = 'block';
+                            document.getElementById('passwordInput').focus();
+                        }, 500);
+                    });
+                }, 500);
+            });
+        };
+
+        // Проверка пароля
+        const checkPassword = () => {
+            const input = document.getElementById('passwordInput').value;
+            const error = document.getElementById('errorMessage');
+            const success = document.getElementById('successMessage');
+            
+            if (input.toUpperCase() === 'XGQ4V') {
+                error.style.display = 'none';
+                success.style.display = 'block';
+                
+                typeText(document.getElementById('success1'), 'ДОСТУП РАЗРЕШЁН', 50, () => {
+                    setTimeout(() => {
+                        typeText(document.getElementById('success2'), 'Твой сегмент ключа для входа в систему:' <strong> 'AYAJI' </strong> , 50, () => {
+                            setTimeout(() => {
+                                typeText(document.getElementById('success3'), 'Используй бортовой терминал для расшифровки кода.', 50, () => {
+                                    setTimeout(() => {
+                                        typeText(document.getElementById('success4'), 'Кодировка HEX. Переведи его в текст, чтобы продвинуться дальше.', 50, () => {
+                                            setTimeout(() => {
+                                                typeText(document.getElementById('success5'), '65 89 65 74 73', 50, () => {
+                                                    setTimeout(() => {
+                                                        typeText(document.getElementById('success6'), 'Слава Супер-Земле!', 50, () => {
+                                                            setTimeout(() => {
+                                                                typeText(document.getElementById('success7'), 'ПЕРЕДАЧА ПОЛУЧЕННЫХ ОТ КОМАНДОВАНИЯ ДАННЫХ В ТРЕТЬИ РУКИ КАРАЕТСЯ ПО ВСЕЙ СТРОГОСТИ ДЕМОКРАТИИ', 30);
+                                                            }, 500);
+                                                        });
+                                                    }, 500);
+                                                });
+                                            }, 500);
+                                        });
+                                    }, 500);
+                                });
+                            }, 500);
+                        });
+                    }, 500);
+                });
             } else {
-                error.style.display = "block";
-                success.style.display = "none";
+                error.style.display = 'block';
+                success.style.display = 'none';
             }
-        }
-        
-        document.getElementById("passwordInput").focus();
+        };
+
+        // Запуск при загрузке
+        window.onload = () => {
+            startSequence();
+        };
     </script>
 </body>
 </html>
