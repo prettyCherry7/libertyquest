@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Операция: Терминал Доступа</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        #passage {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #0f0;
+            padding: 20px;
+            box-shadow: 0 0 10px #0f0;
+        }
+        input {
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        button {
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+        button:hover {
+            background: #0f0;
+            color: #000;
+        }
+        .error {
+            color: #f00;
+            text-shadow: 0 0 5px #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="passage">
+        <h2>ТЕРМИНАЛ ДОСТУПА СУПЕР-ЗЕМЛИ</h2>
+        <p>Гражданин! Приготовься стать частью легиона на защите демократии! Введи номер жетона:</p>
+        
+        <input type="text" id="passwordInput" placeholder="№ ЖЕТОНА">
+        <button onclick="checkPassword()">ПОДТВЕРДИТЬ</button>
+        
+        <p id="errorMessage" class="error" style="display:none;">ОШИБКА! Неверный код. Попробуй снова.</p>
+        
+        <div id="successMessage" style="display:none;">
+            <hr>
+            <h3>ДОСТУП РАЗРЕШЁН</h3>
+            <p>Твой ключ шифрования для входа в систему: <strong>AYAJI</strong></p>
+            <p>Используй бортовой терминал для получения кода на вход</p>
+            <p>const secret = [0x41, 0x59, 0x41, 0x4A, 0x49]; // HEX-коды ASCII</p>
+            <p>console.log(secret.map(c => String.fromCharCode(c)).join(""));</p>
+            <p>Слава Супер-Земле!</p>
+            <p>ПЕРЕДАЧА ПОЛУЧЕННЫХ ОТ КОМАНДОВАНИЯ ДАННЫХ В ТРЕТЬИ РУКИ КАРАЕТСЯ ПО ВСЕЙ СТРОГОСТИ ДЕМОКРАТИИ</p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            const error = document.getElementById("errorMessage");
+            const success = document.getElementById("successMessage");
+            
+            if (input.toUpperCase() === "XGQ4V") {
+                error.style.display = "none";
+                success.style.display = "block";
+            } else {
+                error.style.display = "block";
+                success.style.display = "none";
+            }
+        }
+        
+        document.getElementById("passwordInput").focus();
+    </script>
+</body>
+</html>
