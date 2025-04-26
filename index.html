@@ -111,31 +111,26 @@
             });
         };
 
-        // Проверка пароля
-        const checkPassword = () => {
-            const input = document.getElementById('passwordInput').value;
-            const error = document.getElementById('errorMessage');
-            const success = document.getElementById('successMessage');
-            
-            if (input.toUpperCase() === 'D3Z89') {
-                error.style.display = 'none';
-                success.style.display = 'block';
-                
-                typeText(document.getElementById('success1'), 'ДОСТУП РАЗРЕШЁН', 50, () => {
+       const checkPassword = () => {
+    const input = document.getElementById('passwordInput').value;
+    const error = document.getElementById('errorMessage');
+    const success = document.getElementById('successMessage');
+
+    if (input.toUpperCase() === 'D3Z89') {
+        error.style.display = 'none';
+        success.style.display = 'block';
+
+        typeText(document.getElementById('success1'), 'ДОСТУП РАЗРЕШЁН', 50, () => {
+            setTimeout(() => {
+                typeText(document.getElementById('success2'), 'Твой сегмент ключа для входа в систему: 4Q2FP ', 50, () => {
                     setTimeout(() => {
-                        typeText(document.getElementById('success2'), 'Твой сегмент ключа для входа в систему: 4Q2FP ', 50, () => {
+                        typeText(document.getElementById('success3'), 'Используй бортовой терминал для расшифровки кода.', 50, () => {
                             setTimeout(() => {
-                                typeText(document.getElementById('success3'), 'Используй бортовой терминал для расшифровки кода.', 50, () => {
+                                typeText(document.getElementById('success4'), 'Кодировка HEX. Переведи его в текст, чтобы продвинуться дальше.', 50, () => {
                                     setTimeout(() => {
-                                        typeText(document.getElementById('success4'), 'Кодировка HEX. Переведи его в текст, чтобы продвинуться дальше.', 50, () => {
+                                        typeText(document.getElementById('success5'), '54 57 4B 34 4E', 50, () => {
                                             setTimeout(() => {
-                                                typeText(document.getElementById('success5'), '54 57 4B 34 4E', 50, () => {
-                                                    setTimeout(() => {
-                                                            typeText(document.getElementById('success7'), 'ПЕРЕДАЧА ПОЛУЧЕННЫХ ОТ КОМАНДОВАНИЯ ДАННЫХ В ТРЕТЬИ РУКИ КАРАЕТСЯ ПО ВСЕЙ СТРОГОСТИ ДЕМОКРАТИИ', 30);
-                                                            }, 500);
-                                                        });
-                                                    }, 500);
-                                                });
+                                                typeText(document.getElementById('success7'), 'ПЕРЕДАЧА ПОЛУЧЕННЫХ ОТ КОМАНДОВАНИЯ ДАННЫХ В ТРЕТЬИ РУКИ КАРАЕТСЯ ПО ВСЕЙ СТРОГОСТИ ДЕМОКРАТИИ', 30);
                                             }, 500);
                                         });
                                     }, 500);
@@ -144,11 +139,15 @@
                         });
                     }, 500);
                 });
-            } else {
-                error.style.display = 'block';
-                success.style.display = 'none';
-            }
-        };
+            }, 500);
+        });
+
+    } else {
+        error.style.display = 'block';
+        success.style.display = 'none';
+    }
+};
+
 
         // Запуск при загрузке
         window.onload = () => {
